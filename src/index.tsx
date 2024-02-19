@@ -1,15 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import HomeScreen from './screens/home';
+import { BookContextProvider } from './context/BookContext';
+import Book from './screens/Book';
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element:<HomeScreen/>,
+  },
+  {
+    path:"/book/:id",
+    element:<Book/>
+  }
+ 
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <BookContextProvider>
+     <RouterProvider router={router} />
+     </BookContextProvider>
   </React.StrictMode>
 );
 
